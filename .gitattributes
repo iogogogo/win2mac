@@ -1,0 +1,73 @@
+# ==========================================
+# 通用型 .gitattributes
+# ==========================================
+
+# 1. 默认行为：让 Git 自动判断文本文件，并统一使用 LF 换行符存储
+#    这是跨平台协作的基石，确保仓库内部一致性。
+* text=auto eol=lf
+/gradlew text eol=lf
+
+# 2. 明确声明为文本文件，并强制使用 LF 换行符
+#    适用于所有主流编程语言和配置文件
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.py text eol=lf
+*.java text eol=lf
+*.c text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+*.php text eol=lf
+*.rb text eol=lf
+*.go text eol=lf
+*.rs text eol=lf
+*.cs text eol=lf
+*.sln text eol=crlf
+*.bat text eol=crlf
+
+# 3. 明确声明为二进制文件
+#    防止 Git 尝试修改它们，避免文件损坏
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.exe binary
+*.dll binary
+*.so binary
+*.class binary
+*.jar binary
+*.war binary
+*.a binary
+*.o binary
+*.psd binary
+*.ai binary
+*.sketch binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.db binary
+
+# 4. 导出设置
+#    在使用 git archive 打包项目时，忽略这些文件
+.gitattributes export-ignore
+.gitignore export-ignore
