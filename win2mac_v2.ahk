@@ -66,9 +66,10 @@ Shift::SetCapsLockState "Off"
 !Right::Send "{End}"    ; 行尾
 #HotIf
 
-; ---------- Alt+Shift+←/→ 选中到行首/行尾（macOS ⌘+Shift+←/→ 习惯） ----------
-; 与上一节同样的排除逻辑；Win 里"选中到行首/行尾"即 Shift+Home / Shift+End。
+; ---------- Alt+Shift+←/→ 按单词选中（macOS ⌥+Shift+←/→ 习惯） ----------
+; 与上一节同样的排除逻辑；Win 里"按单词选中"即 Ctrl+Shift+←/→，每按一次扩展一个单词。
+; 注：本组合键改为逐词选中后，原"选中到行首/行尾"不再占用此键位。
 #HotIf !WinActive("ahk_exe msedge.exe") && !WinActive("ahk_exe chrome.exe") && !WinActive("ahk_exe Explorer.exe")
-!+Left::Send "+{Home}"    ; 选中到行首
-!+Right::Send "+{End}"    ; 选中到行尾
+!+Left::Send "^+{Left}"    ; 向左逐词选中
+!+Right::Send "^+{Right}"  ; 向右逐词选中
 #HotIf
