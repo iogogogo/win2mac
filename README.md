@@ -118,3 +118,18 @@
 - 限定到某程序：`#HotIf WinActive("ahk_exe notepad.exe")` … `#HotIf`
 - 新增方向键跳转/选中（参考第 5–6 节）：`!Left::Send "{Home}"`、`!+Left::Send "+{Home}"`
 - 调整排除程序：修改第 5–6 节 `#HotIf` 中 `!WinActive(...)` 的条件即可。
+
+## 打包为 exe（图形界面）
+
+把 `win2mac_v2.ahk` 编译成**自包含 exe**，目标机器无需安装 AutoHotkey 即可运行，也更适合放进启动目录自启。
+
+1. 打开编译器 **Ahk2Exe**：从开始菜单搜索 `Ahk2Exe`，或运行 AutoHotkey 安装目录下的 `Compiler\Ahk2Exe.exe`。
+2. 在 Ahk2Exe 窗口中填写：
+   - **Source (script)**：选择仓库里的 `win2mac_v2.ahk`
+   - **Base file**：选择 **v2 引擎** `AutoHotkey64.exe`（位于 AutoHotkey v2 安装目录内）
+   - **Destination**：填写 `win2mac_v2.exe`（与脚本同目录即可）
+3. 点击 **Convert**，状态栏显示成功即完成。
+
+> ⚠️ **Base file 必须选 v2 的 `AutoHotkey64.exe`**，不能留默认（默认会指向 v1 引擎，导致编译 v2 脚本失败）。
+>
+> 生成的 `win2mac_v2.exe` 已打包 v2 引擎，可直接双击运行。它是构建产物，**不建议提交进仓库**；需要长期保留时，建议将其加入 `.gitignore`。
