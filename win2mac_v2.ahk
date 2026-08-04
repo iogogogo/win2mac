@@ -68,8 +68,11 @@ Shift::SetCapsLockState "Off"
 
 ; ---------- Alt+Shift+←/→ 按单词选中（macOS ⌥+Shift+←/→ 习惯） ----------
 ; 与上一节同样的排除逻辑；Win 里"按单词选中"即 Ctrl+Shift+←/→，每按一次扩展一个单词。
-; 注：本组合键改为逐词选中后，原"选中到行首/行尾"不再占用此键位。
 #HotIf !WinActive("ahk_exe msedge.exe") && !WinActive("ahk_exe chrome.exe") && !WinActive("ahk_exe Explorer.exe")
 !+Left::Send "^+{Left}"    ; 向左逐词选中
 !+Right::Send "^+{Right}"  ; 向右逐词选中
+; 选中到行首/行尾改用三键组合 Alt+Ctrl+Shift+←/→（对应 macOS ⌘+Shift+←/→），
+; 与上面逐词选中互不冲突（Ctrl 同时按下时 AHK 不会触发 !+Left 那行）。
+!+^Left::Send "+{Home}"    ; 选中到行首
+!+^Right::Send "+{End}"    ; 选中到行尾
 #HotIf
