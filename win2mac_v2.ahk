@@ -53,9 +53,20 @@ Shift::SetCapsLockState "Off"
 !r::Send "^r"
 #HotIf
 
-; ---------- 微信：Alt+Enter 发送消息 ----------
+; ---------- 微信专用：消除 Alt 菜单掩码竞态（避免偶发"Alt 没释放"） ----------
+; 微信(Chromium 内核) 对 AHK 自动注入的 menu mask Ctrl 敏感，会与热键体 Send "^x" 的 Ctrl
+; 在修饰键状态机里竞态，偶发残留 Alt/Ctrl 状态 → 表现"Alt 没释放"。这里发送前先 {Alt up}，
+; 让 AHK 检测到 Alt 已释放、不再补注入掩码 Ctrl，消除竞态。
+; 仅微信窗口生效（本块在全局 Alt+字母定义之后）；其它窗口仍走上方全局定义（不加 {Alt up}），互不影响。
 #HotIf WinActive("ahk_exe Weixin.exe") || WinActive("微信")
-!Enter::Send "^{Enter}"
+!a::Send "{Alt up}^a"   ; 全选
+!c::Send "{Alt up}^c"   ; 复制
+!x::Send "{Alt up}^x"   ; 剪切
+!v::Send "{Alt up}^v"   ; 粘贴
+!s::Send "{Alt up}^s"   ; 保存
+!z::Send "{Alt up}^z"   ; 撤销
+!y::Send "{Alt up}^y"   ; 重做
+!Enter::Send "^{Enter}" ; 发送
 #HotIf
 
 ; ---------- Alt+←/→ 跳到行首/行尾（macOS ⌘←/→ 习惯） ----------

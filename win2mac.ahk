@@ -2,6 +2,8 @@
  ;无环境变量
 #NoEnv
  
+#MenuMaskKey vkE8
+
 SetCapsLockState, AlwaysOff  
 SetStoreCapslockMode,Off
  
@@ -23,73 +25,80 @@ SetCapsLockState, Off
 Return
 
 !s::
-Send, ^s
+SendInput, {Alt up}^s
 Return
 
 !a::
-Send, ^a
+SendInput, {Alt up}^a
 Return
 
 !c::
-Send, ^c
+SendInput, {Alt up}^c
 Return
 
 !v::
-Send, ^v
+SendInput, {Alt up}^v
 Return
 
 !x::
-Send, ^x
+SendInput, {Alt up}^x
 Return
 
 !z::
-Send, ^z
+SendInput, {Alt up}^z
 Return
 
 !t::
-Send, ^t
+SendInput, {Alt up}^t
 Return
 
 !n::
-Send, ^n
+SendInput, {Alt up}^n
 Return
 
 !o::
-Send, ^o
+SendInput, {Alt up}^o
 Return
 
 !p::
-Send, ^p
+SendInput, {Alt up}^p
 Return
 
 !y::
-Send, ^y
+SendInput, {Alt up}^y
 Return
 
 !w::
-Send, ^w
+SendInput, {Alt up}^w
 Return
 
 !q::
-Send, ^q
+SendInput, {Alt up}^q
 Return
 
 ; ========== Microsoft Edge浏览器刷新 ==========
 #IfWinActive ahk_exe msedge.exe
-  !r::Send ^r  ; Alt+R = 刷新页面（Chrome）
+  !r::SendInput {Alt up}^r  ; Alt+R = 刷新页面（Chrome）
 #IfWinActive
 
 ; ========== Google Chrome浏览器刷新 ==========
 #IfWinActive ahk_exe chrome.exe
-  !r::Send ^r  ; Alt+R = 刷新页面（Chrome）
+  !r::SendInput {Alt up}^r  ; Alt+R = 刷新页面（Chrome）
 #IfWinActive
 
 
 ; ========== 微信 Alt+Enter 发送消息，方式1 ==========
 #If WinActive("ahk_exe Weixin.exe") || WinActive("微信")
 !Enter::
-SendInput ^{Enter}
+SendInput {Alt up}^{Enter}
 return
+#If
+
+
+; ========== Alt+方向键：行首/行尾 ==========
+#If !WinActive("ahk_exe msedge.exe") && !WinActive("ahk_exe chrome.exe") && !WinActive("ahk_exe Explorer.exe")
+!Left::SendInput, {Alt up}{Home}
+!Right::SendInput, {Alt up}{End}
 #If
 
 
